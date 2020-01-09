@@ -84,7 +84,7 @@ class API extends \WP_REST_Controller {
 			);
 
 			if ( ! is_wp_error( $lead ) ) {
-				return new \WP_REST_Response( 'Ok', 200 );
+				return new \WP_REST_Response( [ 'success' => true ], 200 );
 			} else {
 				return new \WP_REST_Response( $lead->get_error_message(), 501 );
 			}
