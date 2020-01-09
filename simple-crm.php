@@ -26,3 +26,4 @@ define( 'SIMPLE_CRM_PATH', dirname( __FILE__ ) . '/' );
 define( 'SIMPLE_CRM_INC', SIMPLE_CRM_PATH . 'includes/' );
 
 // Include files.
+require_once SIMPLE_CRM_INC . 'cpt.php';
