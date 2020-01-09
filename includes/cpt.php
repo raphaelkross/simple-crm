@@ -40,7 +40,7 @@ function register_cpts() {
 		'rewrite'             => false,
 		'query_var'           => false,
 		'menu_icon'           => 'dashicons-groups',
-		'supports'            => array( 'title' ),
+		'supports'            => array( 'title', 'editor' ),
 		'capabilities'        => array(
 			'edit_post'          => 'update_core',
 			'read_post'          => 'update_core',
