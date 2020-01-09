@@ -61,39 +61,37 @@ function shortcode( $atts ) {
 	wp_enqueue_style( 'simple-crm-main' );
 
 	// Return custom form code.
-	return '
+	$ouput = '
 	<form class="simple-crm-form" action="#">
 		<input type="hidden" name="creation_date" class="js-simple-crm-creation-date">
 		<p>
-			<label>' . $atts['name'] . '</label><br>
+			<label>' . $atts['name'] . '</label>
 			<input type="text" name="name" class="js-simple-crm-name" required maxlength="' . $atts['name-maxlength'] . '">
 		</p>
 		<p>
-			<label>' . $atts['phone'] . '</label><br>
+			<label>' . $atts['phone'] . '</label>
 			<input type="tel" name="phone" class="js-simple-crm-phone" required maxlength="' . $atts['phone-maxlength'] . '">
 		</p>
 		<p>
-			<label>' . $atts['email'] . '</label><br>
+			<label>' . $atts['email'] . '</label>
 			<input type="email" name="email" class="js-simple-crm-email" required maxlength="' . $atts['email-maxlength'] . '">
 		</p>
 		<p>
-			<label>' . $atts['budget'] . '</label><br>
+			<label>' . $atts['budget'] . '</label>
 			<input type="text" name="budget" class="js-simple-crm-budget" required maxlength="' . $atts['budget-maxlength'] . '">
 		</p>
-		<p>
-			<label>' . $atts['msg'] . '</label><br>
+		<p class="span-cols">
+			<label>' . $atts['msg'] . '</label>
 			<textarea name="msg" class="js-simple-crm-msg" rows="' . $atts['rows'] . '" cols="' . $atts['cols'] . '" required  maxlength="' . $atts['msg-maxlength'] . '"></textarea>
 		</p>
-		<p>
+		<p class="span-cols">
 			<button type="submit">Submit</button>
 		</p>
-		<p class="js-simple-crm-loading">' . esc_html__( 'Loading...', 'simple-crm' ) . '<p>
-		<p class="js-simple-crm-message success">' . $atts['success'] . '<p>
-		<p class="js-simple-crm-message error">
-			Error 1<br>
-			Error 2<br>
-		<p>
+		<p class="js-simple-crm-loading span-cols">' . esc_html__( 'Loading...', 'simple-crm' ) . '</p>
+		<p class="js-simple-crm-message success span-cols">' . $atts['success'] . '</p>
+		<p class="js-simple-crm-message error span-cols"></p>
 	</form>';
 
+	return trim( $ouput );
 }
 add_shortcode( 'simple_crm_form', __NAMESPACE__ . '\shortcode' );

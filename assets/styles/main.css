@@ -1,8 +1,102 @@
-body {
-	background: purple;
-}
+/**
+ * Simple CRM Styles.
+ */
 
 .js-simple-crm-loading,
 .js-simple-crm-message {
 	display: none;
+}
+
+.simple-crm-form {
+	background: #eee;
+	border-radius: 10px;
+	padding: 40px 50px 25px;
+	display: grid;
+	grid-gap: 20px 20px;
+    grid-template-columns: 1fr 1fr;
+}
+
+@media ( max-width: 780px ) {
+	.simple-crm-form {
+		grid-template-columns: 1fr;
+		padding: 20px;
+	}
+}
+
+.simple-crm-form p:blank,
+.simple-crm-form p:empty {
+	display: none;
+}
+
+.simple-crm-form .span-cols {
+	grid-column: 1 / -1;
+}
+
+.simple-crm-form label {
+	display: block;
+	margin: 0 0 10px;
+	font-weight: 600;
+}
+
+.simple-crm-form button,
+.simple-crm-form textarea {
+	border: 0;
+    background: #469433;
+    border-radius: 5px;
+    color: #333;
+    font-weight: 600;
+    padding: 20px 30px;
+	font-size: 18px;
+}
+
+.simple-crm-form fieldset {
+	margin: 0;
+	padding: 0;
+	border: 0;
+}
+
+.simple-crm-form input,
+.simple-crm-form textarea {
+	height: 56px;
+	box-sizing: border-box;
+	border: 1px solid #E0E2E3;
+	background-color: white;
+	border-radius: 6px;
+	-webkit-transition: border-color .2s ease-in-out;
+		 -moz-transition: border-color .2s ease-in-out;
+		-ms-transition: border-color .2s ease-in-out;
+			transition: border-color .2s ease-in-out;
+	display: block;
+	width: 100%;
+}
+
+.simple-crm-form textarea {
+	height: auto;
+}
+
+.simple-crm-form button {
+	color: #fff;
+}
+
+.simple-crm-form button:hover {
+	background-color: #4281CB;
+	color: #fff;
+}
+
+.simple-crm-form .error {
+	color: #E02F2F;
+}
+
+.js-simple-crm-message,
+.js-simple-crm-loading {
+	font-size: 22px;
+    color: #333;
+}
+
+.js-simple-crm-message.success {
+	color: #469433;
+}
+
+.js-simple-crm-message.error {
+	color: #E02F2F;
 }
