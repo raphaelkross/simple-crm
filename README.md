@@ -7,7 +7,7 @@ This is a sample project with an external API endpoint example + integration wit
 Add your shortcode form at any post. All parameters are optional but are useful to replace the labels at the form.
 
 ```
-[simple_crm_form name="n" email="e" phone="p" budget="b" msg="m" cols="50" rows="8" success="Ok!"]
+[simple_crm_form name="n" email="e" phone="p" budget="b" msg="m" name-maxlength="10" email-maxlength="10" phone-maxlength="10" budget-maxlength="10" msg-maxlength="10" cols="50" rows="8" success="Ok!"]
 ```
 
 #### Installation

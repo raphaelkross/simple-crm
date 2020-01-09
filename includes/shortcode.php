@@ -38,14 +38,19 @@ function shortcode( $atts ) {
 	// Attributes.
 	$atts = shortcode_atts(
 		array(
-			'name'    => esc_html__( 'Name', 'simple-crm' ),
-			'phone'   => esc_html__( 'Phone Number', 'simple-crm' ),
-			'email'   => esc_html__( 'Email Address', 'simple-crm' ),
-			'budget'  => esc_html__( 'Desired Budget', 'simple-crm' ),
-			'msg'     => esc_html__( 'Message', 'simple-crm' ),
-			'success' => esc_html__( 'Success!', 'simple-crm' ),
-			'rows'    => '5',
-			'cols'    => '33',
+			'name'             => esc_html__( 'Name', 'simple-crm' ),
+			'phone'            => esc_html__( 'Phone Number', 'simple-crm' ),
+			'email'            => esc_html__( 'Email Address', 'simple-crm' ),
+			'budget'           => esc_html__( 'Desired Budget', 'simple-crm' ),
+			'msg'              => esc_html__( 'Message', 'simple-crm' ),
+			'success'          => esc_html__( 'Success!', 'simple-crm' ),
+			'rows'             => '5',
+			'cols'             => '33',
+			'name-maxlength'   => '50',
+			'phone-maxlength'  => '20',
+			'email-maxlength'  => '50',
+			'budget-maxlength' => '10',
+			'msg-maxlength'    => '180',
 		),
 		$atts,
 		'simple_crm_form'
@@ -61,23 +66,23 @@ function shortcode( $atts ) {
 		<input type="hidden" name="creation_date" class="js-simple-crm-creation-date">
 		<p>
 			<label>' . $atts['name'] . '</label><br>
-			<input type="text" name="name" class="js-simple-crm-name">
+			<input type="text" name="name" class="js-simple-crm-name" required maxlength="' . $atts['name-maxlength'] . '">
 		</p>
 		<p>
 			<label>' . $atts['phone'] . '</label><br>
-			<input type="tel" name="phone" class="js-simple-crm-phone">
+			<input type="tel" name="phone" class="js-simple-crm-phone" required maxlength="' . $atts['phone-maxlength'] . '">
 		</p>
 		<p>
 			<label>' . $atts['email'] . '</label><br>
-			<input type="email" name="email" class="js-simple-crm-email">
+			<input type="email" name="email" class="js-simple-crm-email" required maxlength="' . $atts['email-maxlength'] . '">
 		</p>
 		<p>
 			<label>' . $atts['budget'] . '</label><br>
-			<input type="text" name="budget" class="js-simple-crm-budget">
+			<input type="text" name="budget" class="js-simple-crm-budget" required maxlength="' . $atts['budget-maxlength'] . '">
 		</p>
 		<p>
 			<label>' . $atts['msg'] . '</label><br>
-			<textarea name="msg" class="js-simple-crm-msg" rows="' . $atts['rows'] . '" cols="' . $atts['cols'] . '"></textarea>
+			<textarea name="msg" class="js-simple-crm-msg" rows="' . $atts['rows'] . '" cols="' . $atts['cols'] . '" required  maxlength="' . $atts['msg-maxlength'] . '"></textarea>
 		</p>
 		<p>
 			<button type="submit">Submit</button>
