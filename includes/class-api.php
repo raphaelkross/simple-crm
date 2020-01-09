@@ -44,27 +44,27 @@ class API extends \WP_REST_Controller {
 				'required' => true,
 				'label'    => esc_html__( 'Creation Date', 'simple-crm' ),
 			],
-			'name' => [
+			'name'          => [
 				'type'     => 'text',
 				'required' => true,
 				'label'    => esc_html__( 'Name', 'simple-crm' ),
 			],
-			'phone' => [
+			'phone'         => [
 				'type'     => 'text',
 				'required' => true,
 				'label'    => esc_html__( 'Phone', 'simple-crm' ),
 			],
-			'email' => [
+			'email'         => [
 				'type'     => 'email',
 				'required' => true,
 				'label'    => esc_html__( 'Email Address', 'simple-crm' ),
 			],
-			'budget' => [
+			'budget'        => [
 				'type'     => 'text',
 				'required' => true,
 				'label'    => esc_html__( 'Desired Budget', 'simple-crm' ),
 			],
-			'msg' => [
+			'msg'           => [
 				'type'     => 'text',
 				'required' => true,
 				'label'    => esc_html__( 'Message', 'simple-crm' ),
