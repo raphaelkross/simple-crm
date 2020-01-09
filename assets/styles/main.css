@@ -1,3 +1,8 @@
 body {
 	background: purple;
 }
+
+.js-simple-crm-loading,
+.js-simple-crm-message {
+	display: none;
+}

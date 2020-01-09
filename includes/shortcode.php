@@ -13,7 +13,15 @@ namespace SimpleCRM;
 function enqueue_styles() {
 
 	wp_register_style( 'simple-crm-main', SIMPLE_CRM_URL . '/assets/styles/main.css', false, SIMPLE_CRM_VERSION );
-	wp_register_script( 'simple-crm-main', SIMPLE_CRM_URL . '/assets/scripts/main.js', array( 'jquery' ), '1.0', true );
+	wp_register_script( 'simple-crm-main', SIMPLE_CRM_URL . '/assets/scripts/main.js', array( 'jquery' ), SIMPLE_CRM_VERSION, true );
+
+	wp_localize_script(
+		'simple-crm-main',
+		'wpApiSettings',
+		array(
+			'root' => esc_url_raw( rest_url() ),
+		)
+	);
 
 }
 add_action( 'wp_enqueue_scripts', __NAMESPACE__ . '\enqueue_styles' );
@@ -73,9 +81,9 @@ function shortcode( $atts ) {
 		<p>
 			<button type="submit">Submit</button>
 		</p>
-		<p class="js-simple-crm-loading>' . esc_html__( 'Loading...', 'simple-crm' ) . '<p>
-		<p class="message success">' . $atts['success'] . '<p>
-		<p class="message error">
+		<p class="js-simple-crm-loading">' . esc_html__( 'Loading...', 'simple-crm' ) . '<p>
+		<p class="js-simple-crm-message success">' . $atts['success'] . '<p>
+		<p class="js-simple-crm-message error">
 			Error 1<br>
 			Error 2<br>
 		<p>
