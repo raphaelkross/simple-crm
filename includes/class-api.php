@@ -93,7 +93,7 @@ class API extends \WP_REST_Controller {
 				return new \WP_REST_Response( [ 'error' => $lead->get_error_message() ], 200 );
 			}
 		} else {
-			// @TODO: Return error message compiled to FE.
+			// Return error message compiled to FE.
 			return new \WP_REST_Response( [ 'error' => $result->get_error_message() ], 200 );
 		}
 	}
