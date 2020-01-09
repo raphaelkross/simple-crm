@@ -58,6 +58,7 @@ function shortcode( $atts ) {
 	// Return custom form code.
 	return '
 	<form class="simple-crm-form" action="#">
+		<input type="hidden" name="creation_date" class="js-simple-crm-creation-date">
 		<p>
 			<label>' . $atts['name'] . '</label><br>
 			<input type="text" name="name" class="js-simple-crm-name">

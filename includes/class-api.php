@@ -39,6 +39,11 @@ class API extends \WP_REST_Controller {
 		$params = $request->get_body_params();
 
 		$expected_params = [
+			'creation_date' => [
+				'type'     => 'text',
+				'required' => true,
+				'label'    => esc_html__( 'Creation Date', 'simple-crm' ),
+			],
 			'name' => [
 				'type'     => 'text',
 				'required' => true,

@@ -11,9 +11,10 @@ jQuery( document ).ready( function( $ ) {
 
 		var _this = $( this );
 
-		var loadingMsg = _this.find( '.js-simple-crm-loading' );
-		var successMsg = _this.find( '.js-simple-crm-message.success' );
-		var errorMsg   = _this.find( '.js-simple-crm-message.error' );
+		var loadingMsg   = _this.find( '.js-simple-crm-loading' );
+		var successMsg   = _this.find( '.js-simple-crm-message.success' );
+		var errorMsg     = _this.find( '.js-simple-crm-message.error' );
+		var creationDate = _this.find( '.js-simple-crm-creation-date' );
 
 		// Hide messages, show loading...
 		var setAsLoading = function() {
@@ -39,13 +40,24 @@ jQuery( document ).ready( function( $ ) {
 
 		setAsLoading();
 
-		// Do the request.
+		// Include current date.
 		$.ajax( {
-			url: wpApiSettings.root + 'simple-crm/v1/lead',
-			method: 'POST',
+			url: 'http://worldclockapi.com/api/json/utc/now',
+			method: 'GET',
 		} ).done( function ( data ) {
-			// Display data in every wrapper we find.
-			setAsSuccess();
+			// Add data to hidden field.
+			creationDate.val( new Date( data.currentDateTime ) );
+
+			// Do the request.
+			$.ajax( {
+				url: wpApiSettings.root + 'simple-crm/v1/lead',
+				method: 'POST',
+			} ).done( function ( data ) {
+				// Display data in every wrapper we find.
+				setAsSuccess();
+			} ).fail(function( error ) {
+				setAsError( error );
+			});
 		} ).fail(function( error ) {
 			setAsError( error );
 		});
