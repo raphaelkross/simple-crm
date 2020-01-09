@@ -28,3 +28,4 @@ define( 'SIMPLE_CRM_INC', SIMPLE_CRM_PATH . 'includes/' );
 // Include files.
 require_once SIMPLE_CRM_INC . 'cpt.php';
 require_once SIMPLE_CRM_INC . 'class-api.php';
+require_once SIMPLE_CRM_INC . 'shortcode.php';

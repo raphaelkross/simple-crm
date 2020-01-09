@@ -1,6 +1,14 @@
-## SAU/CAL API Plugin
+## Simple CRM Plugin
 
 This is a sample project with an external API endpoint example + integration with JS front-end.
+
+### Usage
+
+Add your shortcode form at any post. All parameters are optional but are useful to replace the labels at the form.
+
+```
+[simple_crm_form name="n" email="e" phone="p" budget="b" msg="m" cols="50" rows="8" success="Ok!"]
+```
 
 #### Installation
 
