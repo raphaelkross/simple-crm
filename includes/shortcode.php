@@ -8,6 +8,17 @@
 namespace SimpleCRM;
 
 /**
+ * Register assets.
+ */
+function enqueue_styles() {
+
+	wp_register_style( 'simple-crm-main', SIMPLE_CRM_URL . '/assets/styles/main.css', false, SIMPLE_CRM_VERSION );
+	wp_register_script( 'simple-crm-main', SIMPLE_CRM_URL . '/assets/scripts/main.js', array( 'jquery' ), '1.0', true );
+
+}
+add_action( 'wp_enqueue_scripts', __NAMESPACE__ . '\enqueue_styles' );
+
+/**
  * Generate Form Shortcode.
  *
  * @param array $atts Attributes.
@@ -31,6 +42,10 @@ function shortcode( $atts ) {
 		$atts,
 		'simple_crm_form'
 	);
+
+	// Enqueue resources.
+	wp_enqueue_script( 'simple-crm-main' );
+	wp_enqueue_style( 'simple-crm-main' );
 
 	// Return custom form code.
 	return '
