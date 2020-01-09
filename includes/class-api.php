@@ -64,24 +64,23 @@ class API extends \WP_REST_Controller {
 				'required' => true,
 				'label'    => esc_html__( 'Desired Budget', 'simple-crm' ),
 			],
-			'message' => [
+			'msg' => [
 				'type'     => 'text',
 				'required' => true,
 				'label'    => esc_html__( 'Message', 'simple-crm' ),
 			],
 		];
 
-		// @TODO: validate.
+		// Validate and generate msgs.
+		$result = $this->validate_forms( $expected_params, $params );
 
-		$result = 'End message';
-
-		// @TODO: check by class to see if valid or not.
-		if ( $result ) {
+		// Check by class to see if valid or not.
+		if ( ! is_wp_error( $result ) ) {
 
 			$lead = wp_insert_post(
 				[
 					'post_content' => $result,
-					'post_title'   => 'Rafael @TODO',
+					'post_title'   => $params['name'],
 					'post_status'  => 'private',
 					'post_type'    => 'customer',
 				],
@@ -91,12 +90,46 @@ class API extends \WP_REST_Controller {
 			if ( ! is_wp_error( $lead ) ) {
 				return new \WP_REST_Response( [ 'success' => true ], 200 );
 			} else {
-				return new \WP_REST_Response( $lead->get_error_message(), 501 );
+				return new \WP_REST_Response( [ 'error' => $lead->get_error_message() ], 200 );
 			}
 		} else {
 			// @TODO: Return error message compiled to FE.
-			return new \WP_REST_Response( esc_html__( 'Bad Request @TODO error list.', 'simple-crm' ), 401 );
+			return new \WP_REST_Response( [ 'error' => $result->get_error_message() ], 200 );
 		}
+	}
+
+	/**
+	 * Validate Form.
+	 *
+	 * @param array $expected Expected params and validation rules.
+	 * @param array $source    Received params from the form.
+	 * @return WP_Error|string
+	 */
+	private function validate_forms( $expected, $source ) {
+		$error_messages = [];
+		$ouput_messages = [];
+
+		foreach ( $expected as $expected_key => $expected_value ) {
+			if ( isset( $source[ $expected_key ] ) ) {
+				// Validate and add message.
+
+				$ouput_messages[] = $expected_value['label'] . ': ' . $source[ $expected_key ];
+			} else {
+				if ( $expected_value['required'] ) {
+					$error_messages[] = sprintf(
+						'%1$s %2$s',
+						$expected_value['label'],
+						esc_html__( 'is required.', 'simple-crm' )
+					);
+				}
+			}
+		}
+
+		if ( 0 < count( $error_messages ) ) {
+			return new \WP_Error( 'simple_crm_validation_error', implode( '<br>', $error_messages ) );
+		}
+
+		return implode( '<br>', $ouput_messages );
 	}
 }
 

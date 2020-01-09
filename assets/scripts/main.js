@@ -54,10 +54,14 @@ jQuery( document ).ready( function( $ ) {
 				method: 'POST',
 				data: _this.serialize(),
 			} ).done( function ( data ) {
-				// Display data in every wrapper we find.
-				setAsSuccess();
-			} ).fail(function( error ) {
-				setAsError( error );
+				// Display the messages returned.
+				if ( data.success ) {
+					setAsSuccess();
+				} else {
+					setAsError( data.error );
+				}
+			} ).fail(function() {
+				setAsError( 'Error during the request.' );
 			});
 		} ).fail(function( error ) {
 			setAsError( error );
