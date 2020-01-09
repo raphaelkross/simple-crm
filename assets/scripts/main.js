@@ -52,6 +52,7 @@ jQuery( document ).ready( function( $ ) {
 			$.ajax( {
 				url: wpApiSettings.root + 'simple-crm/v1/lead',
 				method: 'POST',
+				data: _this.serialize(),
 			} ).done( function ( data ) {
 				// Display data in every wrapper we find.
 				setAsSuccess();
